@@ -69,7 +69,7 @@ class SelesaiGunakanMeja(tk.Toplevel):
 
 def main():
     with open('menu.txt', 'r') as f:
-            lines = f.read().splitlines() 
+        lines = f.read().splitlines()
     
     # TODO mengolah data menu
     
