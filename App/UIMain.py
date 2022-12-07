@@ -2,6 +2,7 @@ from tkinter import Button, ttk
 from .UIOrder import UIOrder
 from .State import get_center
 from .UIFull import UIFull
+
 class UIMain(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -13,7 +14,6 @@ class UIMain(ttk.Frame):
             if not table.reserved:
                 isReserved = True
                 break
-        print(isReserved)
         if isReserved:
             UIOrder(self.master)
         else:

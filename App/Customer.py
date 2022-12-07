@@ -1,8 +1,9 @@
 
-
 class Customer:
-    def __init__(self, name="dummy", table=None):
-        self.table = table
+    count = 0
+    def __init__(self, name = "", table = None, order = None):
+        self.id = Customer.count
         self.name = name
-        self.order = None
-        self.payment = 0
+        self.table = table
+        self.order = order
+        Customer.count += 1

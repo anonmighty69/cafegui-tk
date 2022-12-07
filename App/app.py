@@ -1,7 +1,7 @@
 from tkinter import Tk
 from .UIMain import UIMain
-from .Table import Table
 from .Menu import Drinks, Meals, Sides
+from .Table import Table
 import re
 
 JUMLAH_TABEL = 10
@@ -16,11 +16,9 @@ class App(Tk):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        self.db_table = []
-        for i in range(JUMLAH_TABEL):
-            self.db_table.append(Table(i))
+        self.db_table = ([Table() for i in range(JUMLAH_TABEL)])
+
         self.db_menu = []
-        
         file = open(PATH, 'r')
         title_pattern = "===([A-Z]+)"
         matched_title = ""
@@ -39,7 +37,6 @@ class App(Tk):
                 else:
                     new_menu = Sides(menu[0], menu[1], menu[2], menu[3])
                 self.db_menu.append(new_menu)
-        print(self.db_menu[0].kode_menu)
         UIMain(self)
 
     def run(self):

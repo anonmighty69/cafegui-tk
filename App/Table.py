@@ -1,10 +1,18 @@
 
-
 class Table:
-    def __init__(self, idx=0, customer=None):
-        self.idx = idx
+    count = 0
+    def __init__(self, customer = None, reserved = False):
+        self.id = Table.count
         self.customer = customer
-        self.reserved = False
+        self.reserved = reserved
+        Table.count +=1
+
+
+    
+
+            
+
+
 
 
 

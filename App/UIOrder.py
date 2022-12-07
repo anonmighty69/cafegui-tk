@@ -15,10 +15,9 @@ class UIOrder(Toplevel):
 
     def getRandomTable(self):
         table = None
-        for idx, table in enumerate(self.master.db_table):
+        for id, table in enumerate(self.master.db_table):
             if not table.reserved:
-                self.master.db_table[idx].reserved = True
-                table = self.master.db_table[idx]
+                table = self.master.db_table[id]
                 break
         return table
                 

@@ -10,11 +10,11 @@ class UITable(Toplevel):
         self.selected = -1
         self.oncreate()
 
-    def getcolor(self, idx):
+    def getcolor(self, id):
         color = ""
-        if self.customer.table.idx == idx:
+        if self.customer.table.id == id:
             color = BLUE
-        elif self.table[idx].reserved is True:
+        elif self.table[id].reserved is True:
             color = RED
         else:
             color = GRAY
@@ -46,28 +46,27 @@ class UITable(Toplevel):
         Button(self, text="Kembali", bg=BLUE, fg="white", width=20).grid(row=7, column=2, padx=(10,0))
         Button(self, text="OK", bg=BLUE, fg="white", width=20, command=lambda:self.change_table(self.selected)).grid(row=7, column=4, padx=(0,10))
 
-    def change_table(self, idx):
-        if self.customer.table.idx == idx or self.table[idx].reserved or self.selected == -1:
+    def change_table(self, id):
+        if self.customer.table.id == id or self.table[id].reserved or self.selected == -1:
             pass
         else:
             self.customer.table.reserved = False
-            self.table[idx].reserved = True
-            self.customer.table = self.table[idx]
-            self.master.update_label(idx)
+            self.table[id].reserved = True
+            self.customer.table = self.table[id]
+            self.master.update_label(id)
         self.master.grab_set()
         self.destroy()
 
-    def select_table(self, idx):
-        if self.customer.table.idx == idx or self.table[idx].reserved:
+    def select_table(self, id):
+        if self.customer.table.id == id or self.table[id].reserved:
             return
         if self.selected == -1:
-            self.selected = idx
+            self.selected = id
             self.buttons[self.selected].config(bg=GREEN)
         else:
             self.buttons[self.selected].config(bg=GRAY)
-            self.selected = idx
-            self.buttons[idx].config(bg=GREEN)
-        print(self.selected)
+            self.selected = id
+            self.buttons[id].config(bg=GREEN)
         
 
 

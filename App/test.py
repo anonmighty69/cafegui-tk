@@ -1,6 +1,6 @@
 from tkinter import Tk
 import re
-from .table import Table
+from .Table import Table
 JUMLAH_TABEL = 10
 
 class Window(Tk):
