@@ -10,13 +10,7 @@ PATH = "menu.txt"
 class App(Tk):
     def __init__(self):
         super().__init__()
-        self.config()
-        self.title("Cafe Daun-Daun")
-        self.resizable(width=False, height=False)
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
-
-        self.db_table = ([Table() for i in range(JUMLAH_TABEL)])
+        self.db_table = ([Table(i) for i in range(JUMLAH_TABEL)])
 
         self.db_menu = []
         file = open(PATH, 'r')

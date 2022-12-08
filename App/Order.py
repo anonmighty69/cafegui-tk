@@ -2,8 +2,11 @@
 
 
 class Order:
-    def __init__(self, menu=None, customer=None, qty=0, totalPrice=0):
+    def __init__(self, menu=None, customer=None, qty=0):
         self.menu = menu
-        self.customer = customer
         self.qty = qty
-        self.totalPrice = totalPrice
+        self.customer = customer
+
+    def value(self):
+        result = { 'menuid': self.menu.id, 'qty': self.qty, 'price': self.price }
+        return result

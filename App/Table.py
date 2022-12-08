@@ -1,11 +1,18 @@
 
 class Table:
-    count = 0
-    def __init__(self, customer = None, reserved = False):
-        self.id = Table.count
+    def __init__(self, id, customer = None, reserved = False, orderList= None):
+        self.id = id
         self.customer = customer
+        self.orderList = orderList
         self.reserved = reserved
-        Table.count +=1
+
+    # debug
+    def value(self):
+        order = []
+        for i in self.orderList:
+            order.append(i.value())
+        result = { 'tableid': self.id, 'customerid': self.customer.id, 'order': order, 'reserved': True }
+        return result
 
 
     

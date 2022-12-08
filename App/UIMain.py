@@ -1,43 +1,69 @@
-from tkinter import Button, ttk
+from tkinter import Button, Frame
 from .UIOrder import UIOrder
 from .State import get_center
 from .UIFull import UIFull
+from .UICheckTable import UICheckTable
+from .Colors import BLUE, WHITE
 
-class UIMain(ttk.Frame):
+WIDTH = 600
+HEIGHT = 400
+
+# Tampilan awal
+class UIMain(Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.oncreate()
+        # konfigurasi window
+        self.configWindow()
 
-    def buat_pesanan(self):
+        # komponen ui
+        self.initUI()
+
+    # Buat Pesanan
+    def onCreateOrder(self) -> None:
+        # Check seluruh meja
         isReserved = False
         for table in self.master.db_table:
             if not table.reserved:
                 isReserved = True
                 break
+
+        # Check ketersediaan meja
         if isReserved:
             UIOrder(self.master)
         else:
             UIFull(self.master)
-        
-    def check_table(self):
-        for table in self.master.db_table:
-            if not table.reserved:
-                return True
-        return False
 
-        
-    def selesai_gunakan_meja(self):
-        pass
-    
-    def oncreate(self):
-        self.master.geometry(get_center(self, 600, 400))
-        self.grid(row=0, column=0, sticky="nsew")
-        self.grid_columnconfigure(0, weight=1)
-        self.set_gui()
+    # Selesai Gunakan Meja
+    def onCheckTable(self) -> None:
+        UICheckTable(self.master)
 
-    def set_gui(self):
-        Button(self, text="Buat Pesanan", width=30, command=self.buat_pesanan, bg="#4472C4", fg="white").grid(row=0, column=0, pady=(120, 50))
-        Button(self, text="Selesai Gunakan Meja", width=30, command=self.selesai_gunakan_meja, bg="#4472C4", fg="white").grid(row=1, column=0)
+    # Konfigurasi window
+    def configWindow(self) -> None:
+        self.master.title("Kafe Daun-Daun")
+        self.master.resizable(width=False, height=False)
+        self.master.geometry(get_center(self, WIDTH, HEIGHT))
+
+    # Tampil UI
+    def initUI(self) -> None:
+        buttonBuat = Button(
+            self, 
+            text="Buat Pesanan", 
+            width=30, 
+            command=self.onCreateOrder, 
+            bg=BLUE, 
+            fg=WHITE
+        )
+        buttonBuat.place(relx=.5, rely=.40, anchor='center')
+        buttonSelesai = Button(
+            self, 
+            text="Selesai Gunakan Meja", 
+            width=30, 
+            command=self.onCheckTable, 
+            bg=BLUE, 
+            fg=WHITE
+        )
+        buttonSelesai.place(relx=.5, rely=.50, anchor='center')
+        self.pack(fill='both', expand=True)
 
     
 

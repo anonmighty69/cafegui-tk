@@ -5,5 +5,4 @@ class Customer:
         self.id = Customer.count
         self.name = name
         self.table = table
-        self.order = order
         Customer.count += 1
