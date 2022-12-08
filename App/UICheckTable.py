@@ -81,7 +81,7 @@ class UICheckTable(Toplevel):
 
         # komponen info meja
         infoFrame = Frame(self)
-        infoLabel = Label(infoFrame, text="Info\nMerah: Terisi\nAbu-abu: Kosong\nBiru: Meja anda", justify='left')
+        infoLabel = Label(infoFrame, text="Info\nMerah: Terisi\nAbu-abu: Kosong", justify='left')
         infoLabel.pack(anchor='w', padx=(10, 0))
         infoFrame.pack(fill='x', pady=10)
         
